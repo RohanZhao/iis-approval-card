@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b42318"/>
+    </marker>
+    <style>
+      .impl { fill:#ffffff; stroke:#1f2937; stroke-width:2; }
+      .sim  { fill:#fffbea; stroke:#a16207; stroke-width:2; stroke-dasharray:8 5; }
+      .plan { fill:#f3f4f6; stroke:#9ca3af; stroke-width:2; stroke-dasharray:2 4; }
+      .t  { font-weight:700; }
+      .s  { font-size:12px; fill:#374151; }
+      .st { font-size:11px; font-weight:700; }
+      .ln { stroke:#333; stroke-width:1.6; fill:none; marker-end:url(#a); }
+      .red { stroke:#b42318; stroke-width:1.8; fill:none; marker-end:url(#r); }
+      .lab { font-size:11.5px; fill:#111; }
+      .lane { fill:none; stroke:#d1d5db; stroke-width:1; }
+      .laneT { font-size:12px; fill:#6b7280; font-weight:700; letter-spacing:.05em; }
+    </style>
+  </defs>
+
+  <text x="20" y="30" font-size="20" font-weight="700">Approval-card prototype: system diagram</text>
+
+  <!-- lanes -->
+  <rect class="lane" x="20" y="50" width="170" height="640" rx="6"/>
+  <text class="laneT" x="32" y="70">PERSON</text>
+  <rect class="lane" x="205" y="50" width="250" height="640" rx="6"/>
+  <text class="laneT" x="217" y="70">BROWSER PAGE (static/)</text>
+  <rect class="lane" x="470" y="50" width="420" height="640" rx="6"/>
+  <text class="laneT" x="482" y="70">LOCAL PYTHON SERVER (app.py)</text>
+  <rect class="lane" x="905" y="50" width="275" height="640" rx="6"/>
+  <text class="laneT" x="917" y="70">SHOP SIDE</text>
+
+  <!-- person -->
+  <rect class="impl" x="35" y="95" width="140" height="70" rx="8"/>
+  <text class="t" x="105" y="122" text-anchor="middle">Person</text>
+  <text class="s" x="105" y="142" text-anchor="middle">types request,</text>
+  <text class="s" x="105" y="157" text-anchor="middle">answers, decides</text>
+
+  <rect class="plan" x="35" y="560" width="140" height="70" rx="8"/>
+  <text class="t" x="105" y="588" text-anchor="middle">Phone alert</text>
+  <text class="s" x="105" y="606" text-anchor="middle">"waiting for you"</text>
+  <text class="st" x="105" y="622" text-anchor="middle" fill="#6b7280">PLANNED</text>
+
+  <!-- page -->
+  <rect class="impl" x="220" y="95" width="220" height="70" rx="8"/>
+  <text class="t" x="330" y="120" text-anchor="middle">Request box</text>
+  <text class="s" x="330" y="138" text-anchor="middle">+ demo scenario, baseline toggle</text>
+  <text class="st" x="330" y="155" text-anchor="middle">IMPLEMENTED</text>
+
+  <rect class="impl" x="220" y="200" width="220" height="80" rx="8"/>
+  <text class="t" x="330" y="224" text-anchor="middle">"Here's what I understood"</text>
+  <text class="s" x="330" y="242" text-anchor="middle">options for missing fields;</text>
+  <text class="s" x="330" y="257" text-anchor="middle">Close → Waiting (Resume/Cancel)</text>
+  <text class="st" x="330" y="273" text-anchor="middle">IMPLEMENTED</text>
+
+  <rect class="impl" x="220" y="320" width="220" height="60" rx="8"/>
+  <text class="t" x="330" y="344" text-anchor="middle">Plan + step log</text>
+  <text class="st" x="330" y="366" text-anchor="middle">IMPLEMENTED</text>
+
+  <rect class="impl" x="220" y="415" width="220" height="110" rx="8"/>
+  <text class="t" x="330" y="438" text-anchor="middle">Approval card</text>
+  <text class="s" x="330" y="456" text-anchor="middle">disclosure: order, choices made</text>
+  <text class="s" x="330" y="471" text-anchor="middle">for you + origin, problems</text>
+  <text class="s" x="330" y="486" text-anchor="middle">or baseline: summary only</text>
+  <text class="s" x="330" y="501" text-anchor="middle">Buy · Change · Cancel · Retry</text>
+  <text class="st" x="330" y="517" text-anchor="middle">IMPLEMENTED</text>
+
+  <rect class="impl" x="220" y="560" width="220" height="60" rx="8"/>
+  <text class="t" x="330" y="584" text-anchor="middle">Outcome summary</text>
+  <text class="s" x="330" y="602" text-anchor="middle">built from order return value</text>
+
+  <!-- server -->
+  <rect class="impl" x="485" y="95" width="390" height="60" rx="8"/>
+  <text class="t" x="680" y="120" text-anchor="middle">HTTP API  /api/task/…</text>
+  <text class="s" x="680" y="140" text-anchor="middle">only route between page and logic</text>
+
+  <rect class="sim" x="485" y="190" width="180" height="95" rx="8"/>
+  <text class="t" x="575" y="213" text-anchor="middle">Model (mock_model)</text>
+  <text class="s" x="575" y="231" text-anchor="middle">parse → 5 fields,</text>
+  <text class="s" x="575" y="246" text-anchor="middle">unstated = "unknown";</text>
+  <text class="s" x="575" y="261" text-anchor="middle">writes the reason line</text>
+  <text class="st" x="575" y="278" text-anchor="middle" fill="#a16207">SIMULATED (rules, no LLM)</text>
+
+  <rect class="impl" x="695" y="190" width="180" height="200" rx="8"/>
+  <text class="t" x="785" y="213" text-anchor="middle">Agent controller</text>
+  <text class="s" x="785" y="231" text-anchor="middle">(agent.py)</text>
+  <text class="s" x="785" y="254" text-anchor="middle">read listings</text>
+  <text class="s" x="785" y="270" text-anchor="middle">choose offer</text>
+  <text class="s" x="785" y="286" text-anchor="middle">set option, add to basket</text>
+  <text class="s" x="785" y="302" text-anchor="middle">read back checkout</text>
+  <text class="s" x="785" y="318" text-anchor="middle">build card + disclosure</text>
+  <text class="s" x="785" y="334" text-anchor="middle">Change → rebuild order</text>
+  <text class="st" x="785" y="378" text-anchor="middle">IMPLEMENTED</text>
+
+  <rect class="impl" x="485" y="320" width="180" height="205" rx="8"/>
+  <text class="t" x="575" y="343" text-anchor="middle">Validator (R1–R8)</text>
+  <text class="s" x="575" y="364" text-anchor="middle">R1 inputs confirmed</text>
+  <text class="s" x="575" y="380" text-anchor="middle">R2 offer data complete</text>
+  <text class="s" x="575" y="396" text-anchor="middle">R3 read-back matches</text>
+  <text class="s" x="575" y="412" text-anchor="middle">R4 quantity, pack</text>
+  <text class="s" x="575" y="428" text-anchor="middle">R5 total vs budget</text>
+  <text class="s" x="575" y="444" text-anchor="middle">R6 subscription terms</text>
+  <text class="s" x="575" y="460" text-anchor="middle">R7 approval = snapshot</text>
+  <text class="s" x="575" y="476" text-anchor="middle">R8 order outcome</text>
+  <text class="st" x="575" y="512" text-anchor="middle">IMPLEMENTED (can block Buy)</text>
+
+  <rect class="impl" x="695" y="430" width="180" height="60" rx="8"/>
+  <text class="t" x="785" y="455" text-anchor="middle">Run log (JSONL)</text>
+  <text class="s" x="785" y="474" text-anchor="middle">every step, card shown, choice</text>
+
+  <rect class="plan" x="485" y="575" width="390" height="60" rx="8"/>
+  <text class="t" x="680" y="600" text-anchor="middle">Real LLM call (structured output)</text>
+  <text class="st" x="680" y="622" text-anchor="middle" fill="#6b7280">PLANNED: would replace the simulated model</text>
+
+  <!-- shop -->
+  <rect class="sim" x="920" y="190" width="245" height="200" rx="8"/>
+  <text class="t" x="1042" y="213" text-anchor="middle">Mock shop + browser tool</text>
+  <text class="s" x="1042" y="231" text-anchor="middle">(mock_shop.py, listings.json)</text>
+  <text class="s" x="1042" y="254" text-anchor="middle">O1 20 · O2 40 · O3 80 sheets</text>
+  <text class="s" x="1042" y="270" text-anchor="middle">O3 defaults to Subscribe &amp; Save</text>
+  <text class="s" x="1042" y="286" text-anchor="middle">O4 page times out</text>
+  <text class="s" x="1042" y="302" text-anchor="middle">basket, checkout, mock orders</text>
+  <text class="s" x="1042" y="324" text-anchor="middle">Scenario D: ignores the click</text>
+  <text class="s" x="1042" y="340" text-anchor="middle">that turns subscription off</text>
+  <text class="st" x="1042" y="378" text-anchor="middle" fill="#a16207">SIMULATED</text>
+
+  <rect class="plan" x="920" y="430" width="245" height="80" rx="8"/>
+  <text class="t" x="1042" y="456" text-anchor="middle">Live shop via browser</text>
+  <text class="s" x="1042" y="474" text-anchor="middle">automation; real payment</text>
+  <text class="st" x="1042" y="496" text-anchor="middle" fill="#6b7280">PLANNED</text>
+
+  <!-- arrows -->
+  <path class="ln" d="M175,130 H220"/>
+  <path class="ln" d="M440,130 H485"/>
+  <path class="ln" d="M575,155 V190"/>
+  <text class="lab" x="582" y="177">1 parse</text>
+  <path class="ln" d="M485,240 H440"/>
+  <text class="lab" x="446" y="232">2 fields</text>
+  <path class="ln" d="M175,150 C200,180 200,230 220,240"/>
+  <text class="lab" x="128" y="200">3 answers</text>
+  <path class="ln" d="M440,262 C470,300 470,330 485,345"/>
+  <text class="lab" x="444" y="300">4 R1</text>
+  <path class="ln" d="M665,345 C680,330 680,300 695,290"/>
+  <text class="lab" x="667" y="315">pass</text>
+  <path class="ln" d="M875,260 H920"/>
+  <text class="lab" x="878" y="252">5 read, act</text>
+  <path class="ln" d="M920,320 H875"/>
+  <text class="lab" x="878" y="314">6 read-back</text>
+  <path class="ln" d="M695,360 C680,380 680,390 665,400"/>
+  <text class="lab" x="612" y="300">7 R2–R6</text>
+  <path class="ln" d="M485,470 H440"/>
+  <text class="lab" x="444" y="462">8 card</text>
+  <path class="ln" d="M175,145 C190,300 190,450 220,470"/>
+  <text class="lab" x="60" y="420">9 Buy / Change</text>
+  <text class="lab" x="60" y="435">/ Cancel</text>
+  <path class="red" d="M440,500 C470,520 470,520 485,515"/>
+  <text class="lab" x="448" y="528" fill="#b42318">R7</text>
+  <path class="ln" d="M485,525 C460,560 460,580 440,590"/>
+  <text class="lab" x="420" y="556">10 R8</text>
+  <path class="ln" d="M785,390 V430"/>
+  <path class="ln" d="M1042,390 V430" stroke-dasharray="3 4"/>
+
+  <!-- legend -->
+  <rect class="impl" x="20" y="705" width="34" height="20" rx="4"/><text x="62" y="720">implemented</text>
+  <rect class="sim" x="170" y="705" width="34" height="20" rx="4"/><text x="212" y="720">simulated</text>
+  <rect class="plan" x="310" y="705" width="34" height="20" rx="4"/><text x="352" y="720">planned</text>
+  <text x="450" y="720" class="s">Numbers give the order of one task. Model output is a proposal; only the validator can allow Buy.</text>
+</svg>
