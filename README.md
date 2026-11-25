@@ -1,6 +1,6 @@
 # Approval card for delegated online purchases
 
-IIS Assignment 2 prototype · Student 3160603 · README prose: about 1110 words (code and commands not counted)
+IIS Assignment 2 prototype · Student 3160603 · README prose: about 1260 words (code and commands not counted)
 
 A browser agent buys colour catcher sheets on a person's behalf. Before payment it shows a card that says what was ordered **and which choices were made for the person**, such as a shop's pre-selected Subscribe & Save. A rule-based validator checks the real checkout before Buy is allowed. The design comes from my Lab 2 storyboards and my Lab 3 SPEC v2; the problem comes from my A1 literature review.
 
@@ -55,11 +55,23 @@ Files: `app.py` server · `agent.py` task flow · `validator.py` rules R1–R8 �
 | A1 (Oct) | Literature showed agents keep pre-selected options and that users rarely intervene. Focus narrowed to showing *where each choice came from*. | — |
 | Prototype plan (13 Nov) | I chose: full SPEC v2 flow, Python server + web page, simulated model, keep a baseline toggle for A3. | Stage 1 skeleton ran; parser tested on the two SPEC requests. |
 | Prototype build (25 Nov) | Built the full flow. I chose to expose only case D in the demo menu and put the baseline toggle in the side panel. I kept two choices made during the build: with "You choose" plus a budget, the cheapest offer *within* budget is picked and the cheaper over-budget pack is mentioned; the baseline card never blocks Buy, so A3 can test whether people notice problems from a summary alone. | 18 unit tests pass; headless-browser run of every path with no page errors (screenshots in `docs/screenshots/`). |
-| Fix after first run (25 Nov) | In case D the step log said the agent had "switched" the option although the page had not changed. Reworded to "clicked", because the agent cannot know the click worked until read-back. Unit prices rounded to match the shop page. | Re-ran tests and screenshots. |
-| Fix after storyboard review (25 Nov) | Building the storyboards showed the clarification card printed "null" once every field was answered, and answered fields still said "Please choose". Fixed both; answered fields now say "your answer". | Re-captured frames; checked the text is gone. |
-| Test correction (25 Nov) | A test changed quantity to 2 under "under £5"; the system correctly refused (£7.70), so the test, not the code, was wrong. | Test now uses a no-limit task. |
+| Fix after first run (25 Nov, found in Claude's review) | In case D the step log said the agent had "switched" the option although the page had not changed. Reworded to "clicked", because the agent cannot know the click worked until read-back. Unit prices rounded to match the shop page. | Re-ran tests and screenshots. |
+| Fix after storyboard review (25 Nov, found in Claude's review) | Building the storyboards showed the clarification card printed "null" once every field was answered, and answered fields still said "Please choose". Fixed both; answered fields now say "your answer". | Re-captured frames; checked the text is gone. |
+| Test correction (25 Nov, found in Claude's review) | A test changed quantity to 2 under "under £5"; the system correctly refused (£7.70), so the test, not the code, was wrong. | Test now uses a no-limit task. |
 | My manual check (25 Nov) | I ran all four README scenarios, including the baseline card with case D. Clarification blocking, the case D block and change, subscription acknowledgement and the baseline's Buy all behaved as expected. I found six problems: R2 missing from "What I checked"; O2 shown as 9.63p in the shop but 9.62p on the card; the baseline card in case D showing the £6.84 subscription total with the one-time 9.00p unit price, while the step log still showed a red ✗; run-log entries cut off at about 140 characters; no feedback in the card after Retry; and the subscription checkbox locking after ticking, with the step log staying on ⏸. | — |
 | Fixes from my check (25 Nov) | All six fixed: R2 listed; one half-up rounding function used by both shop and card; baseline unit price taken from the checkout and its step log made neutral; full JSON per log entry; Retry shows the attempt and result; the acknowledgement can be withdrawn, which removes Buy again. | 6 new tests (24 in total); re-checked each fix in the browser. |
+| Report storyboards (25 Nov) | After submitting a first version, I re-read the report and found the four-frame storyboards too small on A4, so they became 2×2 grids ([c0dbb31](https://github.com/RohanZhao/iis-approval-card/commit/c0dbb31)). The new layout clipped the titles, which I fixed ([16bbd12](https://github.com/RohanZhao/iis-approval-card/commit/16bbd12)). | Checked each storyboard fits one A4 page in the exported PDF. |
+
+**Commits.** The code was committed by component after the 25 Nov build and checks, so these commits group files rather than stages:
+
+| Commit | Contents |
+|---|---|
+| [0245fb8](https://github.com/RohanZhao/iis-approval-card/commit/0245fb8) | Mock listings (`data/`), simulated model, mock shop and browser tool |
+| [693a790](https://github.com/RohanZhao/iis-approval-card/commit/693a790) | Validator R1–R8, agent flow, server |
+| [12dfc60](https://github.com/RohanZhao/iis-approval-card/commit/12dfc60) | Side-panel UI: clarification, disclosure and baseline cards |
+| [9ed4076](https://github.com/RohanZhao/iis-approval-card/commit/9ed4076) | 24 tests for SPEC cases A–H and the fixes from my manual check |
+| [73cab49](https://github.com/RohanZhao/iis-approval-card/commit/73cab49) | README, system diagram, storyboards and screenshots |
+| [c0dbb31](https://github.com/RohanZhao/iis-approval-card/commit/c0dbb31), [16bbd12](https://github.com/RohanZhao/iis-approval-card/commit/16bbd12) | Storyboards re-laid out as 2×2 grids; titles fixed |
 
 ## AI assistance
 
