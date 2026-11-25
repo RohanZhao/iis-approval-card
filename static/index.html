@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approval-card prototype</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <p class="banner">Simulation only: made-up shop, simulated model, no real orders or payments.</p>
+
+  <main>
+    <section class="shop" aria-labelledby="shop-title">
+      <h1 id="shop-title">Mock shop</h1>
+      <p class="hint">What the shop page shows. The ticked option on each listing is the page's current setting.</p>
+      <div id="listings"></div>
+      <h2>Basket</h2>
+      <ul id="basket" class="basket"></ul>
+      <div id="orders"></div>
+    </section>
+
+    <aside class="panel" aria-labelledby="panel-title">
+      <h1 id="panel-title">Shopping agent</h1>
+
+      <div class="settings">
+        <label class="switch">
+          <input type="checkbox" id="variant-toggle">
+          <span>Baseline card (A3 comparison)</span>
+        </label>
+        <label for="scenario">Demo scenario</label>
+        <select id="scenario"></select>
+      </div>
+
+      <form id="request-form">
+        <label for="request">What should I buy for you?</label>
+        <textarea id="request" rows="3"></textarea>
+        <div class="chips" id="examples">
+          <span>Try:</span>
+          <button type="button" class="chip">Get me some colour catchers, compare prices.</button>
+          <button type="button" class="chip">Buy one pack of 40 colour catcher sheets on Amazon UK. One-time purchase, under £5. Compare prices first.</button>
+        </div>
+        <button type="submit" class="primary">Send</button>
+      </form>
+
+      <div id="flow" aria-live="polite"></div>
+
+      <details id="log-box">
+        <summary>Run log (this task)</summary>
+        <ol id="log"></ol>
+      </details>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
