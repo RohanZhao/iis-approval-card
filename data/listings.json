@@ -1,0 +1,53 @@
+{
+  "_note": "Made-up listings from SPEC v2 (Lab 3). Prices are illustrative, not real Amazon prices. Delivery is £0 in every case.",
+  "listings": [
+    {
+      "id": "O1",
+      "title": "Colour Catcher sheets",
+      "seller": "Seller A",
+      "pack_size": 20,
+      "prices": {"one_time": 2.30},
+      "default_purchase_type": "one_time",
+      "subscription_terms": null,
+      "delivery": 0.0,
+      "in_stock": true,
+      "readable": true
+    },
+    {
+      "id": "O2",
+      "title": "Colour Catcher sheets",
+      "seller": "Seller A",
+      "pack_size": 40,
+      "prices": {"one_time": 3.85, "subscription": 3.66},
+      "default_purchase_type": "one_time",
+      "subscription_terms": {"interval": "every 2 months", "ends": "until you cancel"},
+      "delivery": 0.0,
+      "in_stock": true,
+      "readable": true
+    },
+    {
+      "id": "O3",
+      "title": "Colour Catcher sheets",
+      "seller": "Seller A",
+      "pack_size": 80,
+      "prices": {"one_time": 7.20, "subscription": 6.84},
+      "default_purchase_type": "subscription",
+      "subscription_terms": {"interval": "every 2 months", "ends": "until you cancel"},
+      "delivery": 0.0,
+      "in_stock": true,
+      "readable": true
+    },
+    {
+      "id": "O4",
+      "title": "Colour Catcher sheets",
+      "seller": "Seller B",
+      "pack_size": 40,
+      "prices": {},
+      "default_purchase_type": null,
+      "subscription_terms": null,
+      "delivery": null,
+      "in_stock": null,
+      "readable": false
+    }
+  ]
+}
